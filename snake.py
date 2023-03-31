@@ -31,6 +31,39 @@ class Snake:
             self.segments[seg_num].goto(new_x, new_y)
         self.head.forward(MOVE_DISTANCE)
 
+    def level_up(self):
+        pog = Turtle()
+        pog.shape('square')
+        pog.penup()
+        pog.color("white")
+
+        last_x = self.segments[-1].xcor()
+        last_y = self.segments[-1].ycor()
+        prev_x = self.segments[-2].xcor()
+        prev_y = self.segments[-1].ycor()
+        newest_x = 0
+        newest_y = 0
+
+        if last_x == prev_x:
+            newest_x = last_x
+            if last_y < prev_y:
+                newest_y = last_y - 20
+            elif last_y > prev_y:
+                newest_y = last_y + 20
+
+            pog.goto(newest_x, newest_y)
+
+        if last_y == prev_y:
+            newest_y = last_y
+            if last_x > prev_x:
+                newest_x = last_x + 20
+            elif last_x < prev_x:
+                newest_x = last_x - 20
+
+            pog.goto(newest_x, newest_y)
+
+        self.segments.append(pog)
+
     def up(self):
         if self.head.heading() != DOWN:
             self.head.setheading(UP)
