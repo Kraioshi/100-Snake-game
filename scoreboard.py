@@ -1,7 +1,7 @@
 from turtle import Turtle, Screen
 
 FONT = ('Courier', 14, 'bold')
-GAME_OVER = ('Courier', 20, 'bold')
+GAME_OVER = ('Courier', 24, 'bold')
 ALIGNMENT = 'center'
 
 
