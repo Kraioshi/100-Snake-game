@@ -1,5 +1,4 @@
 from turtle import Turtle, Screen
-from os import path
 
 FONT = ('Courier', 14, 'bold')
 GAME_OVER = ('Courier', 24, 'bold')
@@ -16,7 +15,9 @@ class ScoreBoard(Turtle):
         self.goto(0, 274)
         self.hideturtle()
         self.score = 0
-        self.high_score = 0
+
+        with open('data.txt', 'r') as data:
+            self.high_score = int(data.read())
         self.update_score()
 
     def update_score(self):
@@ -31,6 +32,8 @@ class ScoreBoard(Turtle):
     def reset_score(self):
         if self.score > self.high_score:
             self.high_score = self.score
+            with open('data.txt', 'w') as data:
+                data.write(f"{self.high_score}")
         self.score = 0
         self.update_score()
 
